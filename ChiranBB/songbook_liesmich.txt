@@ -1,0 +1,63 @@
+Übersicht
+
+Songbook ist ein Plugin der Dir erlaubt, direkt im Spiel deine ABC-Sammlung anzuzeigen und Lieder per Mausklick abzuspielen. Es besteht aus zwei Teilen, dem Teil im Spiel das aus einem Fenster mit den benötigten Bedienelementen besteht und einem externem Programm das eine Liste der vorhandenen ABC-Dateien generiert die das intene Plugin lesen kann (Songbooker).
+
+Funktionen
+
+-Durchsuchen Sie alle Ihre ABC-Dateien im Spiel
+-Musikmodus umschalten
+-Wählen Sie einen Song aus und spielen Sie ihn ab, indem Sie einfach mit der Maus klicken
+-Unterstützung für das Starten der synchronisierten Wiedergabe und das Durchführen einer Bereitschaftsprüfung
+-Bewegliches und in der Größe veränderbares Fenster
+-Unterstützung für Unterverzeichnisse
+-Unterstützung für Songs mit mehreren Parts
+-Anzeige der tatsächlichen Songnamen und nicht nur des Dateinamens
+-Kostenlose mehrteilige ABC-Datei, Oolannin sota!
+-Optionale Song-Parts-Anzeige, mit der Parts angezeigt und ausgewählt werden können
+-Unterstützung deutscher und französischer Clients
+-Such- und Filterfunktion
+-Benutzerdefinierte Befehle zum Einfügen von Songinformationen in einen Chat-Kanal
+-Slots für Instrumente oder andere Gegenstände/Fähigkeiten (die pro Charakter gespeichert werden)
+-Chief-Modus zur Aktivierung der Bandleader-Funktionalität
+-Automatische Auswahl für Bandmitglieder, um automatisch den Song und den Teil auszuwählen, der angekündigt wird
+
+
+Neu in Version 0.99:
+- Automatische Auswahl von Song und Track entsprechend der Ansage des Bandleaders
+- Anzeige der verfügbaren Song-Tag-Informationen
+- Mehrere Erweiterungen der Suche:
+  - Suche im gesamten Songbook, nur im aktuellen Ordner oder im aktuellen Ordner + Unterordner möglich
+  - Der Suchbegriff kann auch Filteroptionen verwenden, um das Suchergebnis einzuschränken
+  - Zusätzliche Filtermöglichkeit für das Instrument
+  - Zusätzliche Filteroption für die Songdauer
+  - Das Aktivieren eines Filters bereitet den Filter nur auf die nächste Suche vor. Verwenden Sie Shift-Click, um den Filter sofort anzuwenden
+- Erhöhte Schriftgröße und einige andere Änderungen an der Benutzeroberfläche
+- Diverse Bugfixes
+
+
+Installation
+
+-falls Du noch keine Plugins benutzt hast gibt es hier gute Einführung: http://www.buffed.de/hdro/page/6922/Der-Herr-der-Ringe-Online-Addon-Plugins-Grundlagen-zu-DHdRO-Addon
+-Entpacke das Plugin nach /Dokumente/The Lord of the Rings Online/Plugins
+-Bei Erstinstalation oder Upgrade von älterer Version muss Songbooker ausgeführt werden.
+
+Einführung
+
+-WICHTIG - Lade bitte die Songtools (Songbooker und Songbrowser) herunter. Mit Songbooker erstellst Du die Songbook-Bibliothek. Mit Songbrowser kannst Du für ein Lied verschiedene Varianten je nach Bandgröße erstellen.
+-WICHTIG - bevor Du das Plugin im Spiel laden kannst, ist es erforderlich, Songbooker auszuführen. Nach jeder Änderung Deiner ABC-Sammlung muss diese Datei ausgeführt werden.
+-Um das plugin im spiel zu laden tippe '/zusatzmodule laden songbookbb'.
+-Durch Klicken auf den M-Knopf wird der Musikmodus ein/ausgeschaltet
+-Wähle ein Lied aus und spiele es ab mit einem Klick auf den Start-Knopf, es sind auch Knöpfe für /play-sync und /playstart vorhanden.
+-Klicke und ziehe die rechte untere Ecke des fensters um es zu skalieren.
+-Klicke und ziehe die Titelleiste um das Fenster zu verschieben.
+-Beim Schliessen wird die Position und Grösse des Fensters gespeichert.
+-Innerhalb des Fensters lassen sich die teilenden Linien auch verschieben
+-Besteht eine ABC-Datei aus mehreren Teilen, so lassen die sich direkt im Teile-Fenster auswählen (aktivierbar in den Einstellungen).
+-Antworten zu den meisten Fragen findest du hier: https://www.linawillow.org/home/plugins-2/songbook/
+
+Befehlzeilenoptionen
+
+-/songbookbb anzeigen - zeigt das Songbook-Fenster
+-/songbookbb verstecken- versteckt das Songbook-Fenster
+-/songbookbb umschalten - schaltet ein/aus das Songbook-Fenster
+-/songbookbb - zeigt alle Befehlzeilenoptionen

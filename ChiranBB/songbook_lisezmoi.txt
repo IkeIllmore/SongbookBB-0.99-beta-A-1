@@ -1,0 +1,61 @@
+Généralités
+
+Song book est un plugin dédié à la navigation et la lecture des fichiers de musiques de type abc, au travers d'une interface simple et intuitive. Le plugin contient deux parties distinctes.
+Un plugin de lecture de la bibliothèque des musiques dans le jeu, et un programme sous windows générant une biliothèque à partir de des vos fichiers abc, dans un format que le plugin pourra lire (Songbooker).
+
+Fonctionnalités
+
+-Parcourez tous vos fichiers abc dans le jeu
+-Basculer en mode musique
+-Sélectionnez et jouez une chanson en cliquant simplement avec votre souris
+-Prise en charge du démarrage du jeu synchronisé et de la vérification de l’état de préparation
+-Fenêtre mobile et redimensionnable
+-Prise en charge des sous-répertoires
+-Prise en charge des chansons à plusieurs parties
+-Affichage des noms de chansons réels et pas seulement du nom de fichier
+-Fichier abc en plusieurs parties gratuit, Oolannin sota !
+-Affichage optionnel des parties de la chanson qui peut être utilisé pour afficher et sélectionner des parties
+-Assistance aux clients allemands et français
+-Fonction de recherche et de filtrage
+-Commandes personnalisées pour coller les informations de la chanson dans un canal de chat
+-Emplacements pour instruments ou autres objets/compétences (qui sont sauvegardés par personnage)
+-Mode chef pour activer la fonctionnalité de chef de bande
+-Sélection automatique pour les membres du groupe afin de sélectionner automatiquement la chanson et la partie qui sont annoncées
+
+
+Nouveau dans la version 0.99:
+
+- Sélection automatique de la chanson et du titre en fonction de l’annonce du leader du groupe
+- Affichage des informations de balise de chanson disponibles
+- Plusieurs extensions à la recherche :
+  - Recherche possible dans l’ensemble du Songbook, dans le dossier actuel uniquement, ou dans le dossier actuel + sous-dossiers
+  - La chaîne de recherche peut également prendre des options de filtre pour restreindre le résultat de la recherche
+  - Option de filtre supplémentaire pour l’instrument
+  - Option de filtre supplémentaire pour la durée de la chanson
+  - La vérification d’un filtre ne fait que préparer le filtre pour la prochaine recherche ; utilisez Maj-clic pour appliquer immédiatement le filtre
+- Augmentation de la taille de la police et autres modifications de l’interface utilisateur
+- Plusieurs corrections de bugs
+
+
+Installation
+- Si vous n'avez pas utilisé de plugin auparavant, il serait utile de lire ce post sur le forum officiel (http://forums.lotro.com/showthread.php?354331-Introduction-to-Lua-UI-scripts)
+- Dézippez l'archive dans votre répertoire Documents/The Lord of the Rings Online/Plugins
+- Si vous mettez à jour depuis une version précédente de ce plugin, vous devrez exécuter le fichier Songbooker avant de pouvoir utiliser le plugin. Merci de suivre les instructions ci-dessous.
+
+Mode d'emploi
+- IMPORTANT - Avant de lancer le plugin, exécutez Songbooker pour générer la bibliothèque des musiques présentes. Double cliquez sur le fichier ou faites un raccourci de cleui ci pour le lancer d'où vous le souhaitez. Vous devrez le relancer en cas de modification (ajout ou suppression de musiques) de voitre bibliothèque.
+- En jeu, pour lancer le plugin, tapez dans le chat '/plugins charger songbookbb' (sans les '').
+- Une fois la fenêtre affichée, cliquez sur le bouton M pour passer en mode Musique (Il faut avoir équiper un instrument auparavant).
+- Sélectionnez une chanson à jouer en cliquant dessus et appuyez sur le bouton Play (Forme de flêche a coté du bouton M). Il y a également des boutons pour le jeu synchro.
+- En cliquant sur la bordure en bas à droite, il est possible de redimensionner la fenêtre.
+- En cliquant sur le titre du plugin en haut vous pouvez déplacer la fenêtre.
+- En fermant la fenêtre, le plugin sauvegardera la taille et position.
+- A l'intérieur de la fenêtre vous pouvez redimensionner les sections répertoires, chansons et partitions avec les lignes de séparation.
+- Si la chanson contient plusieurs partitions, vous pouvez afficher la section Partitions (activez dans les paramètres) et choisir à partir de là.
+- La plupart des réponses à vos questions peuvent être trouvées à cette adresse : https://www.linawillow.org/home/plugins-2/songbook/
+
+Liste des commandes en jeu
+- /songbookbb afficher - Afficher l'interface de SongBook
+- /songbookbb cacher - Cacher l'interface de SongBook
+- /songbookbb basculer - Basculer entre visible et caché
+- /songbookbb - Affiche la liste des commandes en jeu
