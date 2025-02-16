@@ -123,6 +123,7 @@ Settings = {
 	SearchVisible = "yes", 
 	DescriptionVisible = "no", 
 	DescriptionFirst = "no",
+	LastDirOnLoad = "no" 
 	};
 
 -- Lang
@@ -157,7 +158,14 @@ selectedSongIndex = 1;
 selectedTrack = 1; -- set the default track
 
 -- Char settings
-CharSettings = {};
+if ( Settings.LastDirOnLoad == "yes" ) then
+	CharSettings = {
+		dirPath = {} -- table holding directory path
+	};
+	CharSettings.dirPath[1] = "/"; -- set first item as root dir
+else
+	CharSettings = {};
+end
 
 -- Song DB
 SongDB = {
@@ -407,6 +415,20 @@ function SongbookWindow:Constructor()
 	CharSettings = self:LoadCharSettings( ) or CharSettings
 	CharSettings.Version = "1.0"
 	
+	if ( Settings.LastDirOnLoad == "yes" ) then
+		if (CharSettings.dirPath ~= nil) then
+			for i = 1, #CharSettings.dirPath do
+				dirPath[i] = CharSettings.dirPath[i];
+			end
+		end
+	
+		-- init selectedDir from dirPath
+		selectedDir = "";
+		for i = 1, #dirPath do
+			selectedDir = selectedDir .. dirPath[i];
+		end
+	end
+
 	-- Badger Variables for Filters, Players list, Setups
 	self.player = nil
 	self.party = nil
@@ -1478,15 +1500,18 @@ function SongbookWindow:InitListsForSongDB( )
 		self.dirlistBox:ClearItems( )
 		self.songlistBox:ClearItems( )
 		self.tracklistBox:ClearItems( )
-		for i = 1, #SongDB.Directories do
-			local _, dirLevel = string.gsub( SongDB.Directories[i], "/", "/" );
-			if ( dirLevel == 2 ) then
+		if ( Settings.LastDirOnLoad == "yes" ) then
+			self:RefreshDirList();
+		else
+			for i = 1, #SongDB.Directories do
 				local dirItem = Turbine.UI.Label();
-				dirItem:SetTextAlignment( Turbine.UI.ContentAlignment.MiddleLeft );
-				dirItem:SetSize( 1000, UI.lb.hItem );
-				dirItem:SetFont( UI.lb.font )
-				dirItem:SetText( string.sub( SongDB.Directories[i], 2 ) );
-				self.dirlistBox:AddItem( dirItem );
+				local _, dirLevel = string.gsub( SongDB.Directories[i], "/", "/" );
+				if ( dirLevel == 2 ) then
+					dirItem:SetText( string.sub( SongDB.Directories[i], 2 ) );
+					dirItem:SetTextAlignment( Turbine.UI.ContentAlignment.MiddleLeft );
+					dirItem:SetSize( 1000, 20 );
+					self.dirlistBox:AddItem( dirItem );
+				end
 			end
 		end
 		self.sepDirs.hdgDir:SetText( Strings["ui_dirs"] .. selectedDir );
@@ -2423,6 +2448,9 @@ function SongbookWindow:FixIfNotSettings( Settings, SongDB, CharSettings )
 	if ( not Settings.DescriptionFirst ) then
 		Settings.DescriptionFirst = "no";
 	end
+	if ( not Settings.LastDirOnLoad ) then
+		Settings.LastDirOnLoad = "no";
+	end
 	if ( not Settings.ToggleOpacity ) then
 		Settings.ToggleOpacity = "1"; -- ZEDMOD: OriginalBB value 1/4
 	end
@@ -2498,12 +2526,14 @@ function SongbookWindow:SelectDir( iDir )
 	local selectedItem = self:SetListboxColours( self.dirlistBox ); --, iDir )
 	if not selectedItem then return; end
 	if ( selectedItem:GetText() == ".." ) then
+		-- go up one directory level
 		selectedDir = "";
 		table.remove( dirPath, #dirPath );
 		for i = 1, #dirPath do
 			selectedDir = selectedDir .. dirPath[i];
 		end
 	else
+		-- go down one directory level into selected directory
 		selectedDir = selectedDir .. selectedItem:GetText();
 		dirPath[#dirPath + 1] = selectedItem:GetText();
 	end
@@ -2512,12 +2542,25 @@ end
 
 -- Refresh Dir List
 function SongbookWindow:UpdateDirList( iSongInDir )
-	if ( string.len( selectedDir ) < 31 ) then
+	if ( string.len( selectedDir ) < 61 ) then
+		-- display whole directory path
 		self.sepDirs.hdgDir:SetText( Strings["ui_dirs"] .. selectedDir ); -- ZEDMOD
 	else
-		self.sepDirs.hdgDir:SetText( Strings["ui_dirs"] .. string.sub( selectedDir, string.len( selectedDir ) - 30 ) ); -- ZEDMOD
+		-- truncate directory path
+		self.sepDirs.hdgDir:SetText( Strings["ui_dirs"] .. string.sub( selectedDir, string.len( selectedDir ) - 60 ) ); -- ZEDMOD
 	end
-
+	-- Refresh Dir List
+	self:RefreshDirList();
+	
+	-- Refresh Song List
+	self:LoadSongs(iSongInDir);
+end
+---------------------------------
+-- Database : Refresh Dir List --
+---------------------------------
+-- Refresh Dir List
+function SongbookWindow:RefreshDirList()
+	-- Clear Dir List
 	self.dirlistBox:ClearItems();
 	if selectedDir ~= "/" then self:AddDirItem( ".." ); end
 	for i = 1, #SongDB.Directories do
@@ -2535,8 +2578,6 @@ function SongbookWindow:UpdateDirList( iSongInDir )
 			end
 		end
 	end
-	-- Refresh Song List
-	self:LoadSongs( iSongInDir );
 end
 
 function SongbookWindow:AddDirItem( sText )
@@ -3369,6 +3410,15 @@ function SongbookWindow:ToggleDescriptionFirst()
 	end
 end
 
+-- action for toggling last dir on and off
+function SongbookWindow:ToggleLastDirOnLoad()
+	if ( Settings.LastDirOnLoad == "yes" ) then
+		Settings.LastDirOnLoad = "no";
+	else
+		Settings.LastDirOnLoad = "yes";
+	end
+end
+
 ------------
 -- Tracks --
 ------------
@@ -3671,6 +3721,10 @@ function SongbookWindow:SaveSettings()
 	end
 	CharSettings.InstrSlots["number"] = tostring( CharSettings.InstrSlots["number"] );
 	CharSettings.InstrSlots["visHForced"] = tostring( self.bInstrumentsVisibleHForced ); -- ZEDMOD
+	CharSettings.dirPath = {} -- table holding directory path
+	for i = 1, #dirPath do
+		CharSettings.dirPath[i] = dirPath[i];
+	end
 	ModifySettings( Settings, tostring )
 
 	SongbookSave( Turbine.DataScope.Account, gSettings, Settings,

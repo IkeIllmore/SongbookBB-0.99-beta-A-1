@@ -65,6 +65,12 @@ function SettingsWindow:Constructor()
 		mainWnd:ToggleSearch();
 	end );
 	
+	-- Checkbox : Last Directory on Load
+	self.descFirstCheck = self:CreateCheckBox( "cb_lastdir", self.yPos, Settings.LastDirOnLoad, 
+	function( sender, args )
+		mainWnd:ToggleLastDirOnLoad();
+	end, 225, 175 );
+		
 	-- Checkbox : Show Description in Songlist
 	self.descCheck = self:CreateCheckBox( "cb_desc", self:NextPos(), Settings.DescriptionVisible, 
 	function( sender, args )
