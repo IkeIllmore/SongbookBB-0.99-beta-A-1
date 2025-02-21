@@ -88,7 +88,13 @@ function SettingsWindow:Constructor()
 	function( sender, args )
 		self:ChangeVisibility();
 	end );
-	
+
+	-- Checkbox : Solo mode - uses party object, enables sync start quickslot
+	self.soloCheck = self:CreateCheckBox( "cb_solo", self.yPos, Settings.SoloMode, 
+	function( sender, args )
+		mainWnd:SetSoloMode( sender:IsChecked() );
+	end, 120, 250 );
+
 	-- Badger Settings
 	self.badgerLabel = CreateGroupLabelPos( self, "ui_badger", 20, self:NextPos( 20 ), 300 );
 	

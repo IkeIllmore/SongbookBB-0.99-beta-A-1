@@ -437,6 +437,7 @@ function SongbookWindow:Constructor()
 	self.bFilter = false; -- show/hide filter UI -- ZEDMOD: Now,separate to Players list
 	self.bWaitingForSongname = false -- retrieve announcement song name
 	self.bChiefMode = true; -- enables sync start shortcut, uses party object ( seems to work for FS leader )
+	self.bSoloMode = true; -- enables play start shortcut
 	self.bShowAllBtns = false; -- show/hide R, S, and track selector
 	self.bShowPlayers = true; -- show/hide players listbox (used for auto-hide, but disabled for now)
 	self.aFilteredIndices = {}; -- Array for filtered indices, k = display index; v = SongDB index
@@ -935,6 +936,11 @@ function SongbookWindow:Constructor()
 	self:SetChiefMode( Settings.ChiefMode == "true" );
 	self:ShowAllButtons( Settings.ShowAllBtns == "true" )
 	
+	--*****************
+	--* Solo Minimum *
+	--*****************
+	self:SetSoloMode( Settings.SoloMode == "true" );
+
 	--************
 	--* Timer UI *
 	--************
@@ -2456,6 +2462,9 @@ function SongbookWindow:FixIfNotSettings( Settings, SongDB, CharSettings )
 	end
 	if not Settings.FiltersState then Settings.FiltersState = "true"; end
 	if not Settings.ChiefMode then Settings.ChiefMode = "true"; end
+	if ( not Settings.SoloMode ) then
+		Settings.SoloMode = "true";
+	end
 	if not Settings.ShowAllBtns then Settings.ShowAllBtns = "false"; end
 	if not Settings.TimerState then Settings.TimerState = "true"; end -- ZEDMOD: OriginalBB value: false
 	if not Settings.TimerCountdown then Settings.TimerCountdown = "true"; end
@@ -2873,7 +2882,7 @@ function SongbookWindow:SelectTrack( trackId, bNoSelect )
 	self.songTitle:SetText( song.Tracks[iTrack].Name );
 	self.playSlotShortcut = Turbine.UI.Lotro.Shortcut( Turbine.UI.Lotro.ShortcutType.Alias, Strings["cmd_play"] .. " \"" .. song.Filepath .. selectedSong .. "\" " .. song.Tracks[iTrack].Id );
 	self.playSlot:SetShortcut( self.playSlotShortcut );
-	self.playSlot:SetVisible( true );
+	self.playSlot:SetVisible( Settings.SoloMode == "true" );
 	self.syncSlotShortcut = Turbine.UI.Lotro.Shortcut( Turbine.UI.Lotro.ShortcutType.Alias, Strings["cmd_play"] .. " \"" .. song.Filepath .. selectedSong .. "\" " .. song.Tracks[iTrack].Id .. " " .. Strings["cmd_sync"] );
 	self.syncSlot:SetShortcut( self.syncSlotShortcut );
 	self.syncSlot:SetVisible( true );
@@ -3708,6 +3717,7 @@ function SongbookWindow:SaveSettings()
 	Settings.ToggleOpacity = tostring( Settings.ToggleOpacity );
 	Settings.FiltersState = tostring( self.bFilter );
 	Settings.ChiefMode = tostring( self.bChiefMode );
+	Settings.SoloMode = tostring( self.bSoloMode );
 	Settings.ShowAllBtns = tostring( self.bShowAllBtns );
 	Settings.TimerState = tostring( self.bDisplayTimer );
 	Settings.TimerCountdown = tostring( self.bTimerCountdown );
@@ -5215,6 +5225,15 @@ function SongbookWindow:SetChiefMode( bState )
 	self.syncStartSlot:SetVisible( self.bChiefMode );
 	self.syncStartIcon:SetVisible( self.bChiefMode );
 	self.btnAssign:SetVisible( self.bChiefMode )
+end
+
+--------------------
+-- Set Solo Mode --
+--------------------
+function SongbookWindow:SetSoloMode( bState )
+	self.bSoloMode = ( bState == true );
+	self.playSlot:SetVisible( self.bSoloMode );
+	self.playIcon:SetVisible( self.bSoloMode );
 end
 
 function SongbookWindow:ShowAllButtons( bState )
