@@ -60,7 +60,7 @@ if ( lang == "en" ) then
 	Strings["filterValid"] = "Valid search filters are: "
 	Strings["chat_playBegin"] = "playing is about to begin";
 	Strings["chat_playBeginSelf"] = "You begin playing ";
-	Strings["chat_playReadyMsg"] = "(%a+) is ready to play \"(.+).\".*";
+	Strings["chat_playReadyMsg"] = "([a-zA-Z0-9%-]+) is ready to play \"(.+).\".*";
 	Strings["chat_playSelfReadyMsg"] = "You are ready to play \"(.+).\".*";
 	Strings["chat_playerJoin"] = " has joined your";
 	Strings["chat_playerJoinSelf"] = " have joined a"; -- ZEDMOD
@@ -392,7 +392,7 @@ elseif ( lang == "de" ) then
 	Strings["filterLength"] = "Dauer"
 	Strings["chat_playBegin"] = "Synchronisiertes Spiel beginnt bald.";
 	Strings["chat_playBeginSelf"] = "Du spielst ";
-	Strings["chat_playReadyMsg"] = "(%a+) ist bereit \"(.+)\" zu spielen";
+	Strings["chat_playReadyMsg"] = "([a-zA-Z0-9%-]+) ist bereit \"(.+)\" zu spielen";
 	Strings["chat_playSelfReadyMsg"] = "\"(.+)\" kann nun gespielt werden";
 	Strings["chat_playerJoin"] = " hat sich Eure";
 	Strings["chat_playerJoinSelf"] = " habt Euch einer Gruppe"; -- ZEDMOD
@@ -596,7 +596,7 @@ elseif ( lang == "fr" ) then
 	Strings["filterInstr"] = "Instr.";
 	Strings["chat_playBegin"] = "La lecture synchronis\195\169e va commencer";
 	Strings["chat_playBeginSelf"] = "Vous commencez � jouer ";
-	Strings["chat_playReadyMsg"] = "(%a+) va jouer \"(.+).\".*";
+	Strings["chat_playReadyMsg"] = "([a-zA-Z0-9%-]+) va jouer \"(.+).\".*";
 	Strings["chat_playSelfReadyMsg"] = "Vous allez jouer \"(.+).\".*";
 	Strings["chat_playerJoin"] = " a rejoint votre ";
 	Strings["chat_playerJoinSelf"] = " avez rejoint une"; -- ZEDMOD

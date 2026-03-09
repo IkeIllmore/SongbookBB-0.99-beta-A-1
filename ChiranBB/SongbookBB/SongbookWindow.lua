@@ -3999,7 +3999,7 @@ function ChatHandler( sender, args )
 	
 	if args.ChatType ~= Turbine.ChatType.Standard then
 		-- Announcement (in /f or /ra)
-		-- local sAnnouncer = sMessage:match( ".-%>(%a+)%<" )
+		-- local sAnnouncer = sMessage:match( ".-%>([a-zA-Z0-9%-]+)%<" )
 		--local sSong = sMessage:match( Strings["asn_nextSong"]..":\n(.-)\n" )
 		local sCount, sSong = sMessage:match( Strings["asn_nextSong"].."(.*):\n(.-)\n" )
 		if sSong and not sMessage:find( "%[To " ) then -- only when not announcing yourself
@@ -4816,40 +4816,40 @@ end
 
 -- Parse player join message, add player
 function SongbookWindow:PlayerJoined( sMsg )
-	local sPlayerName = string.match( sMsg, "(%a+)"..Strings["chat_playerJoin"] );
+	local sPlayerName = string.match( sMsg, "([a-zA-Z0-9%-]+)"..Strings["chat_playerJoin"] );
 	if sPlayerName then self:AddPlayer( sPlayerName ); end
 	self:RelistPlayers( );
 end
 
 -- ZEDMOD:
 function SongbookWindow:PlayerJoinedSelf( sMsg )
-	local _, _, sPlayerName = string.find( sMsg, "(%a+)" .. Strings["chat_playerJoinSelf"] );
+	local _, _, sPlayerName = string.find( sMsg, "([a-zA-Z0-9%-]+)" .. Strings["chat_playerJoinSelf"] );
 	self:RefreshPlayerListbox( )
 end
 
 -- Parse player left message, remove player
 function SongbookWindow:PlayerLeft( sMsg )
-	local _, _, sPlayerName = string.find( sMsg, "(%a+)" .. Strings["chat_playerLeave"] );
+	local _, _, sPlayerName = string.find( sMsg, "([a-zA-Z0-9%-]+)" .. Strings["chat_playerLeave"] );
 	if sPlayerName then self:RemovePlayer( sPlayerName ); end
 	self:RelistPlayers( );
 end
 
 -- 'you dismissed player'
 function SongbookWindow:PlayerDismissedSelf( sMsg )
-	local sPlayerName = string.match( sMsg, Strings["chat_playerDismissSelf"].."(%a+)" );
+	local sPlayerName = string.match( sMsg, Strings["chat_playerDismissSelf"].."([a-zA-Z0-9%-]+)" );
 	if sPlayerName then self:RemovePlayer( sPlayerName ); end
 	self:RelistPlayers( );
 end
 
 -- 'player was dismissed'
 function SongbookWindow:PlayerDismissed( sMsg )
-	local sPlayerName = string.match( sMsg, "(%a+)"..Strings["chat_playerDismiss"] );
+	local sPlayerName = string.match( sMsg, "([a-zA-Z0-9%-]+)"..Strings["chat_playerDismiss"] );
 	if sPlayerName then self:RemovePlayer( sPlayerName ); end
 	self:RelistPlayers( );
 end
 
 function SongbookWindow:PlayerLinkDead( sMsg )
-	local sPlayerName = string.match( sMsg, "(%a+)"..Strings["chat_playerLinkDead"] )
+	local sPlayerName = string.match( sMsg, "([a-zA-Z0-9%-]+)"..Strings["chat_playerLinkDead"] )
 	if sPlayerName and assignWindow then
 		local iPlayer = Players:Index( sPlayerName )
 		assignWindow.lbAssigns:MarkPlayer( iPlayer, Marks.tag.inactive )
@@ -4860,7 +4860,7 @@ end
 -- Parse player left message, remove player
 function SongbookWindow:PlayerLeftSelf( sMsg )
 	local temp, sPlayerName, sTrackName;
-	temp, temp, sPlayerName = string.find( sMsg, "(%a+)" .. Strings["chat_playerLeaveSelf"] );
+	temp, temp, sPlayerName = string.find( sMsg, "([a-zA-Z0-9%-]+)" .. Strings["chat_playerLeaveSelf"] );
 	self:RefreshPlayerListbox( );
 end
 
