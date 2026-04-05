@@ -301,6 +301,7 @@ end
 
 
 function SongbookWindow:ReloadSongDB( )
+	WRITE( SuccessRGB..Strings["ReloadSongs"].."</rgb>" )
 	SongbookLoad( Turbine.DataScope.Account, "SongbookData", LoadEvHandlerSongDB )
 end
 

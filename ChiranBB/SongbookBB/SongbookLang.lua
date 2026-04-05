@@ -92,6 +92,7 @@ if ( lang == "en" ) then
 	Strings["loadServerOrig"] = "Using original 0.92 version of server settings."
 	Strings["noServer"] = "No settings file found, using defaults."
 	Strings["cb_buttons"] = "Show all buttons";
+	Strings["ReloadSongs"] = "Reload song data."
 	Strings["SongsReloadOk"] = "Song data reloaded."
 	Strings["SongsReloadFail"] = "Could not load song data."
 	Strings["SDOk"] = " Server: SongbookBB data saved.";
@@ -421,6 +422,7 @@ elseif ( lang == "de" ) then
 	Strings["loadServerOrig"] = "Lade originale 0.92 Version der Server-Konfiguration."
 	Strings["noServer"] = "Keine Server-Konfiguration gefunden, verwende Grundeinstellungen."
 	Strings["cb_buttons"] = "Alle Schaltfl\195\164chen anzeigen";
+	Strings["ReloadSongs"] = "Lieder-Datenbank neu laden."
 	Strings["SongsReloadOk"] = "Lieder-Datenbank geladen."
 	Strings["SongsReloadFail"] = "Lieder-Datenbank konnte nicht geladen werden."
 	Strings["SDOk"] = " Server: SongbookBB-Konfiguration gespeichert.";
@@ -625,6 +627,7 @@ elseif ( lang == "fr" ) then
 	Strings["loadServerOrig"] = "Using original 0.92 version of server settings."
 	Strings["noServer"] = "No settings file found, using defaults."
 	Strings["cb_buttons"] = "Show all buttons";
+	Strings["ReloadSongs"] = "Recharger les données du morceau."
 	Strings["SongsReloadOk"] = "Song data reloaded."
 	Strings["SongsReloadFail"] = "Could not load song data."
 	Strings["SDOk"] = " Server: SongbookBB data saved.";
