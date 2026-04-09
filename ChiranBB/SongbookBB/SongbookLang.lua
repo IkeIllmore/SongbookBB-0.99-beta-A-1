@@ -214,7 +214,7 @@ if ( lang == "en" ) then
 			bassoon = { "basic bassoon", "lonely mountain bassoon", "brusque bassoon" },
 			fiddle = { "basic fiddle", "student's fiddle", "traveller's trusty fiddle", "sprightly fiddle", "lonely mountain fiddle", "bardic fiddle" },
 			harp = { "basic harp", "misty mountain harp" },
-			lute = { "basic lute", "lute of ages" },
+			lute = { "lute of ages", "basic lute" },
 			cowbell = { "basic cowbell", "moor cowbell"},
 		},
 	
