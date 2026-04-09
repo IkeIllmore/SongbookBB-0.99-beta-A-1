@@ -295,7 +295,6 @@ local function LoadEvHandlerSongDB( d )
 		return; end
 	SongDB = d
 	WRITE( SuccessRGB..Strings["SongsReloadOk"].."</rgb>" )
-	selectedDir = "/"
 	mainWnd:InitListsForSongDB( )
 end
 
